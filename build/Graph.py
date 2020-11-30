@@ -1,4 +1,3 @@
-from Relative import relatives
 from TreeVersion import TreeVersion
 
 import networkx as nx
@@ -88,8 +87,29 @@ def create_graph(tree: TreeVersion):
     for relative in relatives:
         fixed_positions = get_coordinates(relatives, relative, fixed_positions)
 
+    # рассчитываем размер окна
+    min_x = max_x = min_y = max_y = 0
+    for i in fixed_positions.values():
+        if i[0] < min_x:
+            min_x = i[0]
+        elif i[0] > max_x:
+            max_x = i[0]
+        elif i[1] < min_y:
+            min_y = i[1]
+        elif i[1] > max_y:
+            max_y = i[1]
+
+    if min_x < 0:
+        size_x = abs(min_x) + max_x
+    else:
+        size_x = max_x
+    if min_y < 0:
+        size_y = abs(min_y) + max_y
+    else:
+        size_y = max_y
+
     # рисуем график
-    plt.figure(figsize=(15, 15))
+    plt.figure(figsize=(size_x + 20, size_y + 15))
     plot_graph(nodes=nodes,
                edges=[tuple(row) for row in connections.values],
                labels=True,
