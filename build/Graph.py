@@ -109,7 +109,7 @@ def create_graph(tree: TreeVersion):
         size_y = max_y
 
     # рисуем график
-    plt.figure(figsize=(size_x + 20, size_y + 15))
+    plt.figure(figsize=(size_x + 30, size_y + 15))
     plot_graph(nodes=nodes,
                edges=[tuple(row) for row in connections.values],
                labels=True,
