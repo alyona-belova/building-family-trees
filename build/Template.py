@@ -35,8 +35,16 @@ def get_template_info_by_word(word: str, prev_word: str):
             else:
                 s = s.split()
                 if len(s) > 0 and word == s[0]:
-                    if len(s) > 1 and s[0] == 'зять' and s[1] == '3' and sex[prev_word] == 'm':
-                        relatives_line = False  # зять - муж золовки м. б. только у женщины
+                    # зять - муж золовки м. б. только у женщины
+                    if len(s) > 1 and word == 'зять' and s[1] == '3' and sex[prev_word] == 'm':
+                        relatives_line = False
+
+                    # ограничения по полу бывших мужа/жены
+                    elif len(s) > 1 and word in ('падчерица', 'пасынок') and s[1] == '1' and sex[prev_word] == 'f':
+                        relatives_line = False
+                    elif len(s) > 1 and word in ('падчерица', 'пасынок') and s[1] == '2' and sex[prev_word] == 'm':
+                        relatives_line = False
+
                     else:
                         relatives_line = True
 
