@@ -1,10 +1,10 @@
 сестра
 0, корень, 0; 1, мать, -1; 2, отец, -1; 3, сестра, 0
-0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 3, daughter; 2, 0, daughter; 2, 3, daughter; 3, 1, mother; 3, 2, father
+0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 2, husband; 1, 3, daughter; 2, 0, daughter; 2, 1, wife; 2, 3, daughter; 3, 1, mother; 3, 2, father
 
 брат
 0, корень, 0; 1, мать, -1; 2, отец, -1; 3, брат, 0
-0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 3, son; 2, 0, daughter; 2, 3, son; 3, 1, mother; 3, 2, father
+0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 2, husband; 1, 3, son; 2, 0, daughter; 2, 1, wife; 2, 3, son; 3, 1, mother; 3, 2, father
 
 муж
 0, корень, 0; 1, муж, 0
@@ -95,12 +95,12 @@
 0, 1, mother; 1, 2, father; 2, 1, daughter; 1, 0, daughter
 
 пасынок 1
-0, корень, 0; 1, муж, -1; 2, пасынок, 0
-0, 1, husband; 1, 2, son; 2, 1, father; 1, 0, wife
-
-пасынок 2
 0, корень, 0; 1, жена, -1; 2, пасынок, 0
 0, 1, wife; 1, 2, son; 2, 1, mother; 1, 0, husband
+
+пасынок 2
+0, корень, 0; 1, муж, -1; 2, пасынок, 0
+0, 1, husband; 1, 2, son; 2, 1, father; 1, 0, wife
 
 падчерица 1
 0, корень, 0; 1, жена, -1; 2, падчерица, 0

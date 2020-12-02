@@ -40,7 +40,7 @@ class TreeVersion:
         for rel in template.template_relatives[1:]:
             self.relatives.append(rel)
 
-    def clear_relative_duplicates(self):
+    def find_duplicates(self):
         max_rel_number = {'mother': 1, 'father': 1, 'daughter': 10, 'son': 10, 'husband': 1, 'wife': 1}
 
         # сделаем табличку: в каждой строчке список id, которые на самом деле относятся к одному персонажу
@@ -69,19 +69,29 @@ class TreeVersion:
 
         for i in range(len(id_duplicates)):
             id_duplicates[i] = tuple(id_duplicates[i])
+        return id_duplicates
+
+    def clear_out_duplicates(self, id_duplicates):
+        # создадим словарь старый id : новый id
+        final_ids = {}
+        for lst in id_duplicates:
+            for v in lst:
+                final_ids[v] = min(lst)  # для дупликатов берем минимум строки
+        for rel in self.relatives:
+            if rel.id not in final_ids:
+                final_ids[rel.id] = rel.id  # для остальных - оставляем старый id
 
         new_relatives = []
         for lst in id_duplicates:
             # создадим нового родственника и сохраним в спец. массив
-            final_id = min(lst)  # id - минимальный в строке
             final_color = -1  # color - максимальный в строке
-            for rel in self.relatives:  # ищем родственника с таким id - от него возьмем name
-                if rel.id == final_id:
+            for rel in self.relatives:  # ищем родственника с соотв. final_id - от него возьмем name
+                if rel.id == final_ids[lst[0]]:
                     final_name = rel.name
                 if rel.id in lst and rel.color > final_color:
                     final_color = rel.color
 
-            new_rel = Relative(id=final_id, name=final_name, color=final_color)
+            new_rel = Relative(id=final_ids[lst[0]], name=final_name, color=final_color)
 
             # relations - соберем ото всех, чьи id указаны в строке
             for rel in self.relatives:
@@ -89,7 +99,7 @@ class TreeVersion:
                     for rel_type in rel.relations:
                         for v in rel.relations[rel_type]:
                             if v not in new_rel.relations[rel_type]:
-                                new_rel.relations[rel_type].append(v)
+                                new_rel.relations[rel_type].append(final_ids[v])
             new_relatives.append(new_rel)
 
             # найдем, у кого персонаж числится в relations, и заменим id на final_id + удалим лишние записи
@@ -97,7 +107,7 @@ class TreeVersion:
                 for rel_type in rel.relations:
                     for i in range(len(rel.relations[rel_type])):
                         if rel.relations[rel_type][i] in lst:
-                            rel.relations[rel_type][i] = final_id
+                            rel.relations[rel_type][i] = final_ids[lst[0]]
 
             for rel in self.relatives:
                 for rel_type in rel.relations:

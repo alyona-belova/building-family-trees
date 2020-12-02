@@ -12,7 +12,14 @@ tree_versions.append(first_tree_version)
 first_tree_version.process_word(word_arr=root_form_arr, this_word_ind=0, root_id=0)
 
 for tree in tree_versions:
-    tree.clear_relative_duplicates()  # удаляем дубликаты родственников
+    # удаляем дубликаты родственников
+    while True:
+        id_duplicates = tree.find_duplicates()
+        if id_duplicates:
+            tree.clear_out_duplicates(id_duplicates)
+        else:
+            break
+
     tree.reclaim_id()  # переназначаем id, чтобы они шли по порядку
     tree.rename_relatives()  # переименовываем родственников, чтобы избежать повторения имен
 
