@@ -1,5 +1,5 @@
 from Relative import Relative
-from to_root_form import sex
+from load_forms import kinship_gender
 
 
 # загрузка template_info из файла с описанием шаблончиков
@@ -33,16 +33,24 @@ def get_template_info_by_word(word: str, prev_word: str):
                 template_info = {'relatives': [], 'edges_list': []}
 
             else:
-                s = s.split()
+                s = s.split('-')
                 if len(s) > 0 and word == s[0]:
+                    prev_word = prev_word.split()
+                    if prev_word[0] in ('внучатый', 'внучатая', 'двоюродный', 'двоюродная'):
+                        prev_word = prev_word[1]
+                    else:
+                        prev_word = prev_word[0]
+
                     # зять - муж золовки м. б. только у женщины
-                    if len(s) > 1 and word == 'зять' and s[1] == '3' and sex[prev_word] == 'm':
+                    if len(s) > 1 and word == 'зять' and s[1] == '3' and kinship_gender[prev_word] == 'm':
                         relatives_line = False
 
                     # ограничения по полу бывших мужа/жены
-                    elif len(s) > 1 and word in ('падчерица', 'пасынок') and s[1] == '1' and sex[prev_word] == 'f':
+                    elif len(s) > 1 and word in ('падчерица', 'пасынок') and s[1] == '1' \
+                            and kinship_gender[prev_word] == 'f':
                         relatives_line = False
-                    elif len(s) > 1 and word in ('падчерица', 'пасынок') and s[1] == '2' and sex[prev_word] == 'm':
+                    elif len(s) > 1 and word in ('падчерица', 'пасынок') and s[1] == '2' and \
+                            kinship_gender[prev_word] == 'm':
                         relatives_line = False
 
                     else:
@@ -53,14 +61,18 @@ def get_template_info_by_word(word: str, prev_word: str):
 
 # класс шаблончик
 class Template:
-    def __init__(self, template_info):
+    def __init__(self, template_info, target_rel_name: str):
         relatives_info = template_info['relatives']
         edges_list_info = template_info['edges_list']
         self.template_relatives = []
 
         # создаем родственников и добавляем в массив
         for r in relatives_info:
-            self.template_relatives.append(Relative(id=r[0], name=r[1], color=r[2]))
+            name = r[1]
+            if r[0] == len(relatives_info) - 1:
+                name = target_rel_name
+            self.template_relatives.append(Relative(id=r[0], name=name, name_basic=r[1], color=r[2]))
+            # print(r[0], name, r[1])
 
         # регистрируем связи
         for edge in edges_list_info:
