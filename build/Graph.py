@@ -1,18 +1,64 @@
 from TreeVersion import TreeVersion
-
+from WordSequence import WordSequence
+from load_forms import kinship_gender
 import networkx as nx
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def plot_graph(nodes, edges, pos, labels=False, node_size=False, node_color='r',
-               arrows=False, alpha=0.8, font_size=18, font_weight='normal'):
-    G = nx.DiGraph()
-    G.add_nodes_from(nodes)
+def plot_graph(nodes, edges, pos, node_color, node_shape, name, sentence, size_x, size_y, right, top, bottom):
+    G = nx.Graph()
+
+    f_list = []
+    m_list = []
+    n_list = []
+
+    f_color = []
+    m_color = []
+    n_color = []
+
+    f_pos = {}
+    m_pos = {}
+    n_pos = {}
+
+    for node, sex, color in zip(nodes, node_shape, node_color):
+            if sex == "f":
+                f_list.append(node)
+                f_color.append(color)
+                f_pos.update({node: pos.get(node)})
+            elif sex == "m":
+                m_list.append(node)
+                m_color.append(color)
+                m_pos.update({node: pos.get(node)})
+            else:
+                n_list.append(node)
+                n_color.append(color)
+                n_pos.update({node: pos.get(node)})
+
+    fig = plt.figure(figsize=(size_x + 19, size_y + 19))
+    ax = fig.add_subplot(111)
+
+    fig.set(facecolor='white')
+    ax.set(facecolor='white')
+    ax.set_title(name, fontsize=40, fontweight='bold')
+
+    img = plt.imread("image.png")
+    ax.imshow(img, extent=[-0.5, right+0.5, bottom-0.5, top+0.5])
+
+    plt.figtext(0.5, 0.01, sentence, ha="center", fontsize=22, bbox={"facecolor": "blue", "alpha": 0.1, "pad": 5}, wrap=True)
+
+    nx.draw_networkx_nodes(G, f_pos, f_list, node_shape='o', node_size=7000, node_color=f_color, alpha=0.9)
+    nx.draw_networkx_nodes(G, m_pos, m_list, node_shape='s', node_size=7000, node_color=m_color, alpha=0.9)
+    nx.draw_networkx_nodes(G, n_pos, n_list, node_shape='d', node_size=7000, node_color=n_color, alpha=0.9)
+
     G.add_edges_from(edges)
-    nx.draw(G, with_labels=labels, node_color=node_color,
-            node_size=node_size, arrows=arrows, alpha=alpha,
-            pos=pos, font_size=font_size, font_weight=font_weight)
+    nx.draw_networkx_edges(G, pos)
+
+    names = []
+    for node in nodes:
+        names.append(node.partition("_")[0])
+
+    nx.draw_networkx_labels(G, pos, font_size=18, font_weight='bold', labels=dict(zip(nodes, names)))
 
 
 def get_connections(relatives):
@@ -61,8 +107,13 @@ def get_coordinates(relatives, relative, fixed_positions):
     return fixed_positions
 
 
-def create_graph(tree: TreeVersion):
+def create_graph(tree: TreeVersion, seq: WordSequence, sentence):
     relatives = tree.relatives
+    word_seq_original = ' '.join(seq)
+    for relative in relatives:
+        if " " in relative.name:
+            relative.name = "\n".join(relative.name.split())
+
     connections = get_connections(relatives)  # список ребер
 
     nodes = []  # создаем вершины
@@ -75,9 +126,21 @@ def create_graph(tree: TreeVersion):
         if node.color == -1:
             color_map.append('lightgrey')
         elif node.color == 1:
-            color_map.append('lightcoral')
+            color_map.append('cornflowerblue')
         else:
             color_map.append('skyblue')
+
+    # задаем пол
+    sex_map = []
+    for node in relatives:
+        if node.id == 0:
+            sex_map.append('both')
+        else:
+            name = ''.join(c for c in node.name if c not in '_0123456789')
+            if "\n" in name:
+                sex_map.append(kinship_gender.get(name[name.index('\n') + 1:]))
+            else:
+                sex_map.append(kinship_gender.get(name))
 
     # задаем координаты
     fixed_positions = dict.fromkeys(nodes)
@@ -109,15 +172,16 @@ def create_graph(tree: TreeVersion):
         size_y = max_y
 
     # рисуем график
-    plt.figure(figsize=(size_x + 20, size_y + 15))
     plot_graph(nodes=nodes,
                edges=[tuple(row) for row in connections.values],
-               labels=True,
-               node_color=color_map,
-               node_size=7000,
-               alpha=1,
                pos=fixed_positions,
-               font_size=18,
-               font_weight='bold')
+               node_color=color_map,
+               node_shape=sex_map,
+               name=word_seq_original,
+               sentence=sentence,
+               size_x=size_x,
+               size_y=size_y,
+               right=max_x,
+               top=max_y,
+               bottom=min_y)
     plt.savefig(tree.pic_name)
-    plt.close()
