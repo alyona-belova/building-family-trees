@@ -109,7 +109,7 @@ def get_coordinates(relatives, relative, fixed_positions):
 
 def create_graph(tree: TreeVersion, seq: [str], sentence: str):
     relatives = tree.relatives
-    word_seq_original = ' '.join(seq)
+    word_seq = ' '.join(seq)
     for relative in relatives:
         if " " in relative.name:
             relative.name = "\n".join(relative.name.split())
@@ -177,7 +177,7 @@ def create_graph(tree: TreeVersion, seq: [str], sentence: str):
                pos=fixed_positions,
                node_color=color_map,
                node_shape=sex_map,
-               name=word_seq_original,
+               name=word_seq,
                sentence=sentence,
                size_x=size_x,
                size_y=size_y,
