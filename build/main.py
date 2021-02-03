@@ -35,9 +35,9 @@ for ws in word_sequences:
     ws.get_basic()
     ws.check_correct()
 
-    print(ws.seq_original)
-    print(ws.seq_clear)
-    print()
+    # print(ws.seq_original)
+    # print(ws.seq_clear)
+    # print()
 
 # записываем их в файл
 # with open('corpus_search_results.txt', 'w', encoding='utf-8') as fout:
