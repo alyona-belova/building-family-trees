@@ -58,12 +58,12 @@ class Construction:
 
     def create_folder(self):
         # создаем директорию для данной конструкции
-        folder_path = 'graphs/' + str(self.word_sequence.sent_id)
+        folder_path = '/cs_projects/relatives_to_trees/graphs/' + str(self.word_sequence.sent_id)
         folder_path += '/' + ' '.join(self.word_sequence.seq_clear)
         Path(folder_path).mkdir(parents=True, exist_ok=True)
         return folder_path + '/'
 
-    def create_trees(self, seq_original: WordSequence, sentence):
+    def create_trees(self):
         first_tree_version = TreeVersion(id=0)
         self.tree_versions.append(first_tree_version)
         self.process_word(tree_id=0, this_word_ind=0, root_id=0)
@@ -82,8 +82,7 @@ class Construction:
             tree.rename_relatives()  # переименовываем родственников, чтобы избежать повторения имен
 
             tree.pic_name = folder_path + str(tree.id + 1) + '.png'
-            self.seq_original = seq_original
-            create_graph(tree=tree, seq=seq_original, sentence=sentence)  # рисуем картинку
+            create_graph(tree=tree, seq=self.word_sequence.seq_clear, sentence=self.word_sequence.sentence)
 
         print(' '.join(self.word_sequence.seq_clear))
         print('graphs created:', str(len(self.tree_versions)))

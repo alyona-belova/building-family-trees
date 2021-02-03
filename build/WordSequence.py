@@ -1,18 +1,19 @@
 from text_analysis import is_kinship_term, is_definition, is_noun, \
     is_vnuch_dvoiur, is_pronoun, is_poss_adj, \
-    check_case_gender, get_normal_form, get_basic_term, sequence_correct, search_sentence
-from nltk.tokenize import sent_tokenize
+    check_case_gender, get_normal_form, get_basic_term, sequence_correct
+import re
 
 
 class WordSequence:
-    def __init__(self, seq_original: [str], sentence: str, sent_id: int):
-        self.sentence = sentence
-        self.sent_id = sent_id
-        self.seq_original = seq_original
-        self.seq_clear = []
-        self.seq_normal = []
-        self.seq_basic = []
-        self.type = -1
+    def __init__(self, sentence: str, seq_original: [str], sent_id: int):
+        self.sentence = sentence  # предложение, где была найдена конструкция
+        self.sent_id = sent_id  # порядк. номер этого предложения
+
+        self.seq_original = seq_original  # конструкция в виде, в кот. была найдена
+        self.seq_clear = []  # конструкция, очищенная от лишних слов
+        self.seq_normal = []  # конструкция в виде для дальнейшей обработки (нач. формы слов, обр. порядок)
+        self.seq_basic = []  # seq_normal, где термины родства заменены на соотв. базовые (маменька -> мама)
+        self.type = -1  # тип конструкции 0 - 5
         self.correct = None
 
     def show(self, fout):  # печать в файл
@@ -124,41 +125,3 @@ class WordSequence:
     # проверка корректности
     def check_correct(self):
         self.correct = sequence_correct(self.seq_basic)
-
-
-if __name__ == '__main__':
-    # text = """От бывшей жены ее племянника Михаила.
-    # Через пару дней бабушка моего друга вышла в туалет ранним утром.
-    # Еще раз взглянув на дядю моего друга, поняла, что знакомиться будем завтра, сегодня он точно не в теме."""
-
-    with open('corpus.txt', 'r', encoding='utf-8') as corpus_file:
-        text = corpus_file.read()
-
-    text = sent_tokenize(text, language='russian')  # разбиваем текст на предложения
-    word_sequences = []
-
-    # ищем конструкции
-    for i in range(len(text)):
-        sent = text[i]
-        search_results = search_sentence(sent)
-        for seq in search_results:
-            word_sequences.append(WordSequence(seq_original=seq, sentence=sent, sent_id=i))
-
-    for ws in word_sequences:
-        ws.clear()
-        ws.normalize()
-        ws.get_basic()
-        ws.check_correct()
-
-    with open('new_try.txt', 'w', encoding='utf-8') as fout:
-        for sent in text:
-            fout.write(sent + '\n')
-            flag = False
-            for ws in word_sequences:
-                if ws.sentence == sent:
-                    flag = True
-                    ws.show(fout=fout)
-                    fout.write('\n')
-            if not flag:
-                fout.write('-\n')
-            fout.write('\n')

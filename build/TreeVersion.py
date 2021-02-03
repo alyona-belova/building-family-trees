@@ -1,5 +1,5 @@
 from Relative import Relative
-from Template import Template, get_template_info_by_word
+from Template import Template
 
 
 class TreeVersion:

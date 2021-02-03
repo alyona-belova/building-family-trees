@@ -9,7 +9,13 @@ from Construction import Construction
 # with open('corpus.txt', 'r', encoding='utf-8') as corpus_file:
 #     text = corpus_file.read()
 
-text = """Вошли две дамы, обе девицы, одна ― падчерица одного двоюродного брата покойной жены князя, или что-то в этом роде, воспитанница его, которой он уже выделил приданое и которая (замечу для будущего) и сама была с деньгами; вторая ― Анна Андреевна Версилова, дочь Версилова, старше меня тремя годами, жившая с своим братом у Фанариотовой и которую я видел до этого времени всего только раз в моей жизни, мельком на улице, хотя с братом ее, тоже мельком, уже имел в Москве стычку (очень может быть, и упомяну об этой стычке впоследствии, если место будет, потому что в сущности не стоит)."""
+text = """У жены сестра, а вы ее муж. Ладно? Вы ее муж. Вошли две дамы, обе девицы, 
+одна ― падчерица одного двоюродного брата покойной жены князя, 
+или что-то в этом роде, воспитанница его, которой он уже выделил приданое и которая (замечу для будущего) 
+и сама была с деньгами; вторая ― Анна Андреевна Версилова, дочь Версилова, старше меня тремя годами, 
+жившая с своим братом у Фанариотовой и которую я видел до этого времени всего только раз в моей жизни, 
+мельком на улице, хотя с братом ее, тоже мельком, уже имел в Москве стычку 
+(очень может быть, и упомяну об этой стычке впоследствии, если место будет, потому что в сущности не стоит)."""
 
 # разбиваем текст на предложения
 text = sent_tokenize(text, language='russian')
@@ -28,10 +34,10 @@ for ws in word_sequences:
     ws.normalize()
     ws.get_basic()
     ws.check_correct()
-#
-#     print(ws.seq_original)
-#     print(ws.seq_clear)
-#     print()
+
+    print(ws.seq_original)
+    print(ws.seq_clear)
+    print()
 
 # записываем их в файл
 # with open('corpus_search_results.txt', 'w', encoding='utf-8') as fout:
@@ -69,7 +75,7 @@ for ws in word_sequences:
 for ws in word_sequences:
     print(ws.sent_id)
     # создаем директорию данного предложения
-    folder_path = 'graphs/' + str(ws.sent_id)
+    folder_path = '/cs_projects/relatives_to_trees/graphs/' + str(ws.sent_id)
     Path(folder_path).mkdir(parents=True, exist_ok=True)
     txt_file_path = folder_path + '/sentence.txt'
     with open(txt_file_path, 'w', encoding='utf-8') as sent_file:
@@ -82,4 +88,4 @@ for ws in word_sequences:
         print()
     else:
         construction = Construction(word_sequence=ws)
-        construction.create_trees(ws.seq_original, ws.sentence)
+        construction.create_trees()

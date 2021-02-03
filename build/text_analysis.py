@@ -1,5 +1,5 @@
 import pymorphy2
-from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.tokenize import word_tokenize
 from load_forms import kinship_term_list, kinship_term_dict, kinship_gender, kinship_gendered_exceptions, \
     pronouns_list, pronouns_dict, poss_adj_stem
 
@@ -133,10 +133,10 @@ def get_basic_term(s: str):  # базовая форма терминов род
     return s
 
 
-def cut_dots(s):  # удаление многоточий
+def cut_dots(s):  # удаление многоточий и точек, приклеенных к словам
     if len(s) == 1:
         return s
-    if s[len(s) - 1] == '…':
+    if s[len(s) - 1] == '…' or s[len(s) - 1] == '.':
         return s[:len(s) - 1]
     return s
 
@@ -170,7 +170,6 @@ def sequence_correct(seq: [str]):  # проверка конструкции н�
 
 # поиск конструкций в предложении
 def search_sentence(sent):
-    # sent_original = sent
     sent = word_tokenize(sent, language='russian')  # разбиваем предложение на слова
     sent = [cut_dots(word) for word in sent]
     sent_capitalized = tuple(sent)
@@ -213,11 +212,3 @@ def search_sentence(sent):
         else:  # мы вне конструкции
             i += 1
     return results
-
-
-if __name__ == '__main__':
-    s_parse = morph.parse('и')
-    for v in s_parse:
-        print(v.tag)
-        print(v.normalized.methods_stack)
-        print()

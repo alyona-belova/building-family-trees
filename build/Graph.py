@@ -1,5 +1,4 @@
 from TreeVersion import TreeVersion
-from WordSequence import WordSequence
 from load_forms import kinship_gender
 import networkx as nx
 import pandas as pd
@@ -45,7 +44,8 @@ def plot_graph(nodes, edges, pos, node_color, node_shape, name, sentence, size_x
     img = plt.imread("image.png")
     ax.imshow(img, extent=[-0.5, right+0.5, bottom-0.5, top+0.5])
 
-    plt.figtext(0.5, 0.01, sentence, ha="center", fontsize=22, bbox={"facecolor": "blue", "alpha": 0.1, "pad": 5}, wrap=True)
+    plt.figtext(0.5, 0.01, sentence, ha="center", fontsize=22,
+                bbox={"facecolor": "blue", "alpha": 0.1, "pad": 5}, wrap=True)
 
     nx.draw_networkx_nodes(G, f_pos, f_list, node_shape='o', node_size=7000, node_color=f_color, alpha=0.9)
     nx.draw_networkx_nodes(G, m_pos, m_list, node_shape='s', node_size=7000, node_color=m_color, alpha=0.9)
@@ -107,7 +107,7 @@ def get_coordinates(relatives, relative, fixed_positions):
     return fixed_positions
 
 
-def create_graph(tree: TreeVersion, seq: WordSequence, sentence):
+def create_graph(tree: TreeVersion, seq: [str], sentence: str):
     relatives = tree.relatives
     word_seq_original = ' '.join(seq)
     for relative in relatives:
@@ -185,3 +185,4 @@ def create_graph(tree: TreeVersion, seq: WordSequence, sentence):
                top=max_y,
                bottom=min_y)
     plt.savefig(tree.pic_name)
+    plt.close()
