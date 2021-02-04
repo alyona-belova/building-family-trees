@@ -52,7 +52,7 @@ def plot_graph(filename,
     nx.draw_networkx_nodes(G, n_pos, n_list, node_shape='d', node_size=7000, node_color=n_color, alpha=0.9)
 
     G.add_edges_from(edges)
-    nx.draw_networkx_edges(G, pos)
+    nx.draw_networkx_edges(G, pos, width=3, edge_color="grey")
 
     names = []
     for node in nodes:
