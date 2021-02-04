@@ -72,7 +72,7 @@ def check_case_gender(kinship_term, definition):
 
 
 # получение начальной формы
-def get_normal_form(s, next_word=None):
+def get_normal_form(s: str, is_first: bool, next_word=None):
     s_capitalized = s
     s = s.lower()
     s_normal = ''
@@ -123,7 +123,7 @@ def get_normal_form(s, next_word=None):
 
     if s_normal == '':
         raise Exception("Can't get normal form: " + s)
-    return capitalize(s_capitalized, s_normal)
+    return capitalize(s_capitalized, s_normal, is_first)
 
 
 def get_basic_term(s: str):  # базовая форма терминов родства
@@ -141,8 +141,8 @@ def cut_dots(s):  # удаление многоточий и точек, при�
     return s
 
 
-def capitalize(s_old: str, s_new: str):
-    if not s_old.isupper() and s_old[0].isupper():
+def capitalize(s_old: str, s_new: str, is_first: bool):
+    if not is_first and not s_old.isupper() and s_old[0].isupper():
         s_new = s_new[0].upper() + s_new[1:]
     return s_new
 

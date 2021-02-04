@@ -1,7 +1,6 @@
 from text_analysis import is_kinship_term, is_definition, is_noun, \
     is_vnuch_dvoiur, is_pronoun, is_poss_adj, \
     check_case_gender, get_normal_form, get_basic_term, sequence_correct
-import re
 
 
 class WordSequence:
@@ -91,10 +90,10 @@ class WordSequence:
             # получаем нормальную форму
             word = self.seq_clear[i]
             if i == len(self.seq_clear) - 1:
-                word = get_normal_form(word)
+                word = get_normal_form(word, is_first=i == 0)
             else:
                 next_word = self.seq_normal[i + 1]
-                word = get_normal_form(word, next_word=next_word)
+                word = get_normal_form(word, is_first=i == 0, next_word=next_word)
             self.seq_normal[i] = word
 
         # склеиваем внуч. / двоюр. со след. словом

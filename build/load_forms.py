@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+
+
 def load_forms():
     with open('kinship_term_list.txt', 'r', encoding='utf-8') as data_file:
         for s in data_file:
@@ -48,3 +51,5 @@ pronouns_dict = dict()  # местоимения - соотв. нач. форм�
 poss_adj_stem = dict()  # прит. прил. + сущ., от кот. образованы
 
 load_forms()
+
+background_img = plt.imread("image.png")

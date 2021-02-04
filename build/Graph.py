@@ -1,11 +1,12 @@
 from TreeVersion import TreeVersion
-from load_forms import kinship_gender
+from load_forms import kinship_gender, background_img
 import networkx as nx
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def plot_graph(nodes, edges, pos, node_color, node_shape, name, sentence, size_x, size_y, right, top, bottom):
+def plot_graph(filename,
+               nodes, edges, pos, node_color, node_shape, name, sentence, size_x, size_y, right, top, bottom):
     G = nx.Graph()
 
     f_list = []
@@ -41,8 +42,7 @@ def plot_graph(nodes, edges, pos, node_color, node_shape, name, sentence, size_x
     ax.set(facecolor='white')
     ax.set_title(name, fontsize=40, fontweight='bold')
 
-    img = plt.imread("image.png")
-    ax.imshow(img, extent=[-0.5, right+0.5, bottom-0.5, top+0.5])
+    ax.imshow(background_img, extent=[-0.5, right + 0.5, bottom - 0.5, top + 0.5])
 
     plt.figtext(0.5, 0.01, sentence, ha="center", fontsize=22,
                 bbox={"facecolor": "blue", "alpha": 0.1, "pad": 5}, wrap=True)
@@ -59,6 +59,10 @@ def plot_graph(nodes, edges, pos, node_color, node_shape, name, sentence, size_x
         names.append(node.partition("_")[0])
 
     nx.draw_networkx_labels(G, pos, font_size=18, font_weight='bold', labels=dict(zip(nodes, names)))
+
+    plt.savefig(filename)
+    fig.clf()
+    plt.close(fig=fig)
 
 
 def get_connections(relatives):
@@ -172,7 +176,8 @@ def create_graph(tree: TreeVersion, seq: [str], sentence: str):
         size_y = max_y
 
     # рисуем график
-    plot_graph(nodes=nodes,
+    plot_graph(filename=tree.pic_name,
+               nodes=nodes,
                edges=[tuple(row) for row in connections.values],
                pos=fixed_positions,
                node_color=color_map,
@@ -184,5 +189,4 @@ def create_graph(tree: TreeVersion, seq: [str], sentence: str):
                right=max_x,
                top=max_y,
                bottom=min_y)
-    plt.savefig(tree.pic_name)
-    plt.close()
+
