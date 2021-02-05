@@ -41,35 +41,35 @@ for ws in word_sequences:
     # print()
 
 # записываем их в файл
-with open('corpus_search_results.txt', 'w', encoding='utf-8') as fout:
-    for sent in text:
-        fout.write(sent + '\n')
-        flag = False
-        for ws in word_sequences:
-            if ws.sentence == sent:
-                flag = True
-                ws.show(fout=fout)
-                fout.write('\n')
-        if not flag:
-            fout.write('-\n')
-        fout.write('\n')
+# with open('corpus_search_results.txt', 'w', encoding='utf-8') as fout:
+#     for sent in text:
+#         fout.write(sent + '\n')
+#         flag = False
+#         for ws in word_sequences:
+#             if ws.sentence == sent:
+#                 flag = True
+#                 ws.show(fout=fout)
+#                 fout.write('\n')
+#         if not flag:
+#             fout.write('-\n')
+#         fout.write('\n')
 
 # таблица для оценки качества
-with open('evaluation_table.tsv', 'w', encoding='utf-8') as table:
-    table.write('\t'.join(['', '', '']) + '\n')
-    for i in range(len(text)):
-        sent = text[i]
-        flag = False
-        for ws in word_sequences:
-            if sent == ws.sentence:
-                flag = True
-                sent_print = ' '.join(ws.sentence.split('\n'))
-                arr = [str(ws.sent_id), sent_print, ' '.join(ws.seq_clear)]
-                table.write('\t'.join(arr) + '\n')
-        if not flag:
-            sent_print = ' '.join(sent.split('\n'))
-            arr = [str(i + 1), sent_print, '-']
-            table.write('\t'.join(arr) + '\n')
+# with open('evaluation_table.tsv', 'w', encoding='utf-8') as table:
+#     table.write('\t'.join(['', '', '']) + '\n')
+#     for i in range(len(text)):
+#         sent = text[i]
+#         flag = False
+#         for ws in word_sequences:
+#             if sent == ws.sentence:
+#                 flag = True
+#                 sent_print = ' '.join(ws.sentence.split('\n'))
+#                 arr = [str(ws.sent_id), sent_print, ' '.join(ws.seq_clear)]
+#                 table.write('\t'.join(arr) + '\n')
+#         if not flag:
+#             sent_print = ' '.join(sent.split('\n'))
+#             arr = [str(i + 1), sent_print, '-']
+#             table.write('\t'.join(arr) + '\n')
 
 # создаем и рисуем деревья
 for ws in word_sequences:
@@ -88,8 +88,8 @@ for ws in word_sequences:
         print()
     else:
         construction = Construction(word_sequence=ws)
-        # print(ws.seq_original)
-        # print(ws.seq_clear)
-        # print(ws.seq_normal)
-        # print()
+        print(ws.seq_original)
+        print(ws.seq_clear)
+        print(ws.seq_normal)
+        print()
         construction.create_trees()

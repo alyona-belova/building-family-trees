@@ -39,6 +39,15 @@ def load_forms():
             for term in kinship_term_dict:
                 if kinship_term_dict[term] == word:
                     kinship_gender[term] = gender
+        kinship_gender['она'] = 'f'
+        kinship_gender['он'] = 'm'
+
+    with open('kinship_female_only.txt', 'r', encoding='utf-8') as f_exc, \
+            open('kinship_male_only.txt', 'r', encoding='utf-8') as m_exc:
+        for s in f_exc:
+            kinship_gendered_exceptions['female'].append(s.strip())
+        for s in m_exc:
+            kinship_gendered_exceptions['male'].append(s.strip())
 
 
 kinship_term_list = []  # термины родства

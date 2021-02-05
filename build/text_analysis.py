@@ -1,7 +1,7 @@
 import pymorphy2
 from nltk.tokenize import word_tokenize
 from load_forms import kinship_term_list, kinship_term_dict, kinship_gender, kinship_gendered_exceptions, \
-    pronouns_list, pronouns_dict, poss_adj_stem
+    pronouns_list, pronouns_dict
 
 morph = pymorphy2.MorphAnalyzer()  # морфологический анализатор pymorphy2
 
@@ -175,11 +175,12 @@ def sequence_correct(seq: [str]):  # проверка конструкции н�
             return False
 
     # проверка, что такие сочетания родств. связь + пол возможны
-    for i in range(2, len(seq)):
+    for i in range(1, len(seq)):
         word = seq[i]
         prev_word = seq[i - 1]
-        if (word in kinship_gendered_exceptions['female'] and kinship_gender[prev_word] == 'm') or \
-                (word in kinship_gendered_exceptions['male'] and kinship_gender[prev_word] == 'f'):
+        if prev_word in kinship_gender and \
+                ((word in kinship_gendered_exceptions['female'] and kinship_gender[prev_word] == 'm') or
+                 (word in kinship_gendered_exceptions['male'] and kinship_gender[prev_word] == 'f')):
             return False
     return True
 
@@ -228,4 +229,3 @@ def search_sentence(sent):
         else:  # мы вне конструкции
             i += 1
     return results
-

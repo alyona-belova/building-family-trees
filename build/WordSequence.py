@@ -96,6 +96,15 @@ class WordSequence:
                 word = get_normal_form(word, is_first=i == 0, next_word=next_word)
             self.seq_normal[i] = word
 
+        # для типов констр. 1, 2 меняем местами два посл. слова
+        if self.type in (1, 2):
+            self.seq_normal[len(self.seq_normal) - 1], self.seq_normal[len(self.seq_normal) - 2] = \
+                self.seq_normal[len(self.seq_normal) - 2], self.seq_normal[len(self.seq_normal) - 1]
+
+        # добавляем "я", если констр. кончается на термин родства
+        if is_kinship_term(self.seq_normal[len(self.seq_normal) - 1]):
+            self.seq_normal.append('я')
+
         # склеиваем внуч. / двоюр. со след. словом
         i = 0
         while i < len(self.seq_normal):
@@ -105,14 +114,6 @@ class WordSequence:
                 del self.seq_normal[i + 1]
             else:
                 i += 1
-
-        # для типов констр. 1, 2 меняем местами два посл. слова
-        if self.type in (1, 2):
-            self.seq_normal[len(self.seq_normal) - 1], self.seq_normal[len(self.seq_normal) - 2] = \
-                self.seq_normal[len(self.seq_normal) - 2], self.seq_normal[len(self.seq_normal) - 1]
-        # для типа констр. 0, 5 добавляем корень "я"
-        if self.type in (0, 5):
-            self.seq_normal.append('я')
 
         # переворачиваем последов.
         self.seq_normal.reverse()
