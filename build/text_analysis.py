@@ -107,19 +107,35 @@ def get_normal_form(s: str, is_first: bool, next_word=None):
                 s_normal = pronouns_dict[item]
                 break
 
-    elif is_noun(s, case='gent'):  # существит. (не термин родства)
+    elif is_poss_adj(s):  # притяжательные прилагательные
+        p = morph.parse(s)
+        for v in p:
+            if 'DictionaryAnalyzer' not in str(v.methods_stack[0][0]):
+                continue
+            ending = v.normal_form[len(v.normal_form) - 2:]
+            if ending == 'ов':
+                s_normal = v.normal_form[:len(v.normal_form) - 2]
+
+            elif ending in ('ев', 'ёв'):
+                s_normal = v.normal_form[:len(v.normal_form) - 2] + 'ь'
+
+            elif ending in ('ин', 'ын'):
+                temp = v.normal_form[:len(v.normal_form) - 2] + 'а'
+                temp_parse = morph.parse(temp)
+                for t in temp_parse:
+                    if 'DictionaryAnalyzer' in str(t.methods_stack[0][0]) \
+                            and t.tag.POS == 'NOUN' and t.tag.case == 'nomn' and t.tag.number == 'sing':
+                        s_normal = temp
+                        break
+                if s_normal == '':
+                    s_normal = temp[:len(temp) - 1] + 'я'
+
+    elif is_noun(s):  # существит. (не термин родства)
         s_parse = morph.parse(s)[0]
         if s_parse.tag.number == 'plur':
             s_normal = s_parse.inflect({'nomn', 'plur'}).word
         else:
             s_normal = morph.parse(s)[0].normal_form
-
-    elif is_poss_adj(s):  # притяжательные прилагательные
-        s_parse = morph.parse(s)
-        for v in s_parse:
-            if v.normal_form in poss_adj_stem:
-                s_normal = poss_adj_stem[v.normal_form]
-                break
 
     if s_normal == '':
         raise Exception("Can't get normal form: " + s)
@@ -212,3 +228,4 @@ def search_sentence(sent):
         else:  # мы вне конструкции
             i += 1
     return results
+
