@@ -75,7 +75,11 @@ for ws in word_sequences:
 for ws in word_sequences:
     print(ws.sent_id)
     # создаем директорию данного предложения
+<<<<<<< HEAD
     folder_path = 'graphs/' + str(ws.sent_id)
+=======
+    folder_path = '/cs_projects/relatives_to_trees/graphs/' + str(ws.sent_id)
+>>>>>>> 9ada933a1d05f2a59978bf283cb7b0428b774e37
     Path(folder_path).mkdir(parents=True, exist_ok=True)
     txt_file_path = folder_path + '/sentence.txt'
     with open(txt_file_path, 'w', encoding='utf-8') as sent_file:

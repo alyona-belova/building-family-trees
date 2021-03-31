@@ -58,7 +58,11 @@ class Construction:
 
     def create_folder(self):
         # создаем директорию для данной конструкции
+<<<<<<< HEAD
         folder_path = 'graphs/' + str(self.word_sequence.sent_id)
+=======
+        folder_path = '/cs_projects/relatives_to_trees/graphs/' + str(self.word_sequence.sent_id)
+>>>>>>> 9ada933a1d05f2a59978bf283cb7b0428b774e37
         folder_path += '/' + ' '.join(self.word_sequence.seq_clear)
         Path(folder_path).mkdir(parents=True, exist_ok=True)
         return folder_path + '/'
