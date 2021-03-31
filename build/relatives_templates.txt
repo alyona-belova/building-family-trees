@@ -1,0 +1,455 @@
+сестра
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, сестра, 0
+0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 2, husband; 1, 3, daughter; 2, 0, daughter; 2, 1, wife; 2, 3, daughter; 3, 1, mother; 3, 2, father
+
+брат
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, брат, 0
+0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 2, husband; 1, 3, son; 2, 0, daughter; 2, 1, wife; 2, 3, son; 3, 1, mother; 3, 2, father
+
+муж
+0, корень, 0; 1, муж, 0
+0, 1, husband; 1, 0, wife
+
+жена
+0, корень, 0; 1, жена, 0
+0, 1, wife; 1, 0, husband
+
+бывшая жена
+0, корень, 0; 1, жена, 0
+0, 1, wife; 1, 0, husband
+
+бывший муж
+0, корень, 0; 1, муж, 0
+0, 1, husband; 1, 0, wife
+
+дочь
+0, корень, 0; 1, дочь, 0
+0, 1, daughter; 1, 0, mother
+
+сын
+0, корень, 0; 1, сын, 0
+0, 1, son; 1, 0, mother
+
+отец
+0, корень, 0; 1, отец, 0
+0, 1, father; 1, 0, daughter
+
+мать
+0, корень, 0; 1, мать, 0
+0, 1, mother; 1, 0, daughter
+
+тёща
+0, корень, 0; 1, жена, -1; 2, тёща, 0
+0, 1, wife; 1, 2, mother; 2, 1, daughter; 1, 0, husband
+
+тесть
+0, корень, 0; 1, жена, -1; 2, тесть, 0
+0, 1, wife; 1, 2, father; 2, 1, daughter; 1, 0, husband
+
+свёкор
+0, корень, 0; 1, муж, -1; 2, свёкор, 0
+0, 1, husband; 1, 2, father; 2, 1, son; 1, 0, wife
+
+свекровь
+0, корень, 0; 1, муж, -1; 2, свекровь, 0
+0, 1, husband; 1, 2, mother; 2, 1, son; 1, 0, wife
+
+невестка
+0, корень, 0; 1, сын, -1; 2, невестка, 0
+0, 1, son; 1, 2, wife; 2, 1, husband; 1, 0, mother
+
+сноха
+0, корень, 0; 1, сын, -1; 2, сноха, 0
+0, 1, son; 1, 2, wife; 2, 1, husband; 1, 0, father
+
+внук-1
+0, корень, 0; 1, дочь, -1; 2, внук, 0
+0, 1, daughter; 1, 2, son; 2, 1, mother; 1, 0, mother
+
+внук-2
+0, корень, 0; 1, сын, -1; 2, внук, 0
+0, 1, son; 1, 2, son; 2, 1, father; 1, 0, mother
+
+внучка-1
+0, корень, 0; 1, дочь, -1; 2, внучка, 0
+0, 1, daughter; 1, 2, daughter; 2, 1, mother; 1, 0, mother
+
+внучка-2
+0, корень, 0; 1, сын, -1; 2, внучка, 0
+0, 1, son; 1, 2, daughter; 2, 1, father; 1, 0, mother
+
+бабушка-1 
+0, корень, 0; 1, отец, -1; 2, бабушка, 0
+0, 1, father; 1, 2, mother; 2, 1, son; 1, 0, daughter
+
+бабушка-2
+0, корень, 0; 1, мать, -1; 2, бабушка, 0
+0, 1, mother; 1, 2, mother; 2, 1, daughter; 1, 0, daughter
+
+дедушка-1
+0, корень, 0; 1, отец, -1; 2, дедушка, 0
+0, 1, father; 1, 2, father; 2, 1, son; 1, 0, daughter
+
+дедушка-2
+0, корень, 0; 1, мать, -1; 2, дедушка, 0
+0, 1, mother; 1, 2, father; 2, 1, daughter; 1, 0, daughter
+
+пасынок-1
+0, корень, 0; 1, жена, -1; 2, пасынок, 0
+0, 1, wife; 1, 2, son; 2, 1, mother; 1, 0, husband
+
+пасынок-2
+0, корень, 0; 1, муж, -1; 2, пасынок, 0
+0, 1, husband; 1, 2, son; 2, 1, father; 1, 0, wife
+
+падчерица-1
+0, корень, 0; 1, жена, -1; 2, падчерица, 0
+0, 1, wife; 1, 2, daughter; 2, 1, mother; 1, 0, husband
+
+падчерица-2
+0, корень, 0; 1, муж, -1; 2, падчерица, 0
+0, 1, husband; 1, 2, daughter; 2, 1, father; 1, 0, wife
+
+мачеха
+0, корень, 0; 1, отец, -1; 2, мачеха, 0
+0, 1, father; 1, 0, daughter; 1, 2, wife; 2, 1, husband
+
+отчим
+0, корень, 0; 1, мать, -1; 2, отчим, 0
+0, 1, mother; 1, 0, daughter; 1, 2, husband; 2, 1, wife
+
+прабабушка-1
+0, корень, 0; 1, мать, -1; 2, дедушка, -1; 3, прабабушка, 0
+0, 1, mother; 1, 2, father; 2, 3, mother; 3, 2, son; 2, 1, daughter; 1, 0, daughter
+
+прабабушка-2
+0, корень, 0; 1, отец, -1; 2, дедушка, -1; 3, прабабушка, 0
+0, 1, father; 1, 2, father; 2, 3, mother; 3, 2, son; 2, 1, son; 1, 0, daughter
+
+прабабушка-3
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, прабабушка, 0
+0, 1, father; 1, 2, mother; 2, 3, mother; 3, 2, daughter; 2, 1, son; 1, 0, daughter
+
+прабабушка-4
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, прабабушка, 0
+0, 1, mother; 1, 2, mother; 2, 3, mother; 3, 2, daughter; 2, 1, daughter; 1, 0, daughter
+
+прадедушка-1
+0, корень, 0; 1, мать, -1; 2, дедушка, -1; 3, прадедушка, 0
+0, 1, mother; 1, 2, father; 2, 3, father; 3, 2, son; 2, 1, daughter; 1, 0, daughter
+
+прадедушка-2
+0, корень, 0; 1, отец, -1; 2, дедушка, -1; 3, прадедушка, 0
+0, 1, father; 1, 2, father; 2, 3, father; 3, 2, son; 2, 1, son; 1, 0, daughter
+
+прадедушка-3
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, прадедушка, 0
+0, 1, father; 1, 2, mother; 2, 3, father; 3, 2, daughter; 2, 1, son; 1, 0, daughter
+
+прадедушка-4
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, прадедушка, 0
+0, 1, mother; 1, 2, mother; 2, 3, father; 3, 2, daughter; 2, 1, daughter; 1, 0, daughter
+
+шурин
+0, корень, 0; 1, жена, -1; 2, тёща, -1; 3, тесть, -1; 4, шурин, 0
+0, 1, wife; 1, 0, husband; 1, 2, mother; 1, 3, father; 2, 1, daughter; 2, 4, son; 3, 1, daughter; 3, 4, son; 4, 2, mother; 4, 3, father
+
+свояченица
+0, корень, 0; 1, жена, -1; 2, тёща, -1; 3, тесть, -1; 4, свояченица, 0
+0, 1, wife; 1, 0, husband; 1, 2, mother; 1, 3, father; 2, 1, daughter; 2, 4, daughter; 3, 1, daughter; 3, 4, daughter; 4, 2, mother; 4, 3, father
+
+деверь
+0, корень, 0; 1, муж, -1; 2, свекровь, -1; 3, свёкор, -1; 4, деверь, 0
+0, 1, husband; 1, 0, wife; 1, 2, mother; 1, 3, father; 2, 1, son; 2, 4, son; 3, 1, son; 3, 4, son; 4, 2, mother; 4, 3, father
+
+золовка
+0, корень, 0; 1, муж, -1; 2, свекровь, -1; 3, свёкор, -1; 4, золовка, 0
+0, 1, husband; 1, 0, wife; 1, 2, mother; 1, 3, father; 2, 1, son; 2, 4, daughter; 3, 1, son; 3, 4, daughter; 4, 2, mother; 4, 3, father
+
+сват-1
+0, корень, 0; 1, дочь, -1; 2, зять, -1; 3, сват, 0
+0, 1, daughter; 1, 2, husband; 2, 3, father; 3, 2, son; 2, 1, wife; 1, 0, mother
+
+сваха-1
+0, корень, 0; 1, дочь, -1; 2, зять, -1; 3, сваха, 0
+0, 1, daughter; 1, 2, husband; 2, 3, mother; 3, 2, son; 2, 1, wife; 1, 0, mother
+
+сват-2
+0, корень, 0; 1, сын, -1; 2, сноха, -1; 3, сват, 0
+0, 1, son; 1, 2, wife; 2, 3, father; 3, 2, daughter; 2, 1, husband; 1, 0, mother
+
+сваха-2
+0, корень, 0; 1, сын, -1; 2, сноха, -1; 3, сваха, 0
+0, 1, son; 1, 2, wife; 2, 3, mother; 3, 2, daughter; 2, 1, husband; 1, 0, mother
+
+сваха-3
+0, корень, 0; 1, сын, -1; 2, невестка, -1; 3, сваха, 0
+0, 1, son; 1, 2, wife; 2, 3, mother; 3, 2, daughter; 2, 1, husband; 1, 0, father
+
+cват-3
+0, корень, 0; 1, сын, -1; 2, невестка, -1; 3, сват, 0
+0, 1, son; 1, 2, wife; 2, 3, father; 3, 2, daughter; 2, 1, husband; 1, 0, father
+
+тётя-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, тётя, 0
+0, 1, mother; 1, 2, mother; 1, 3, father; 2, 1, daughter; 2, 4, daughter; 3, 1, daughter; 3, 4, daughter; 4, 2, mother; 4, 3, father
+
+тётя-2
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, тётя, 0
+0, 1, father; 1, 2, mother; 1, 3, father; 2, 1, son; 2, 4, daughter; 3, 1, son; 3, 4, daughter; 4, 2, mother; 4, 3, father
+
+дядя-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, дядя, 0
+0, 1, mother; 1, 2, mother; 1, 3, father; 2, 1, daughter; 2, 4, son; 3, 1, daughter; 3, 4, son; 4, 2, mother; 4, 3, father
+
+дядя-2
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, дядя, 0
+0, 1, father; 1, 2, mother; 1, 3, father; 2, 1, son; 2, 4, son; 3, 1, son; 3, 4, son; 4, 2, mother; 4, 3, father
+
+племянник-1
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, сестра, -1; 4, племянник, 0
+0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 3, daughter; 2, 0, daughter; 2, 3, daughter; 3, 1, mother; 3, 2, father; 3, 4, son; 4, 3, mother
+
+племянник-2
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, брат, -1; 4, племянник, 0
+0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 3, son; 2, 0, daughter; 2, 3, son; 3, 1, mother; 3, 2, father; 3, 4, son; 4, 3, father
+
+племянница-1
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, сестра, -1; 4, племянница, 0
+0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 3, daughter; 2, 0, daughter; 2, 3, daughter; 3, 1, mother; 3, 2, father; 3, 4, daughter; 4, 3, mother
+
+племянница-2
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, брат, -1; 4, племянница, 0
+0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 3, son; 2, 0, daughter; 2, 3, son; 3, 1, mother; 3, 2, father; 3, 4, daughter; 4, 3, father
+
+кузен-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, тётя, -1; 5, кузен, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, daughter; 2, 4, daughter; 3, 1, daughter; 3, 4, daughter; 4, 5, son; 5, 4, mother
+
+кузен-2
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, дядя, -1; 5, кузен, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, daughter; 2, 4, son; 3, 1, daughter; 3, 4, son; 4, 5, son; 5, 4, father
+
+кузен-3
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, тётя, -1; 5, кузен, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, son; 2, 4, daughter; 3, 1, son; 3, 4, daughter; 4, 5, son; 5, 4, mother
+
+кузен-4
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, дядя, -1; 5, кузен, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, son; 2, 4, son; 3, 1, son; 3, 4, son; 4, 5, son; 5, 4, father
+
+кузина-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, тётя, -1; 5, кузина, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, daughter; 2, 4, daughter; 3, 1, daughter; 3, 4, daughter; 4, 5, son; 5, 4, mother
+
+кузина-2
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, дядя, -1; 5, кузина, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, daughter; 2, 4, son; 3, 1, daughter; 3, 4, son; 4, 5, daughter; 5, 4, father
+
+кузина-3
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, тётя, -1; 5, кузина, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, son; 2, 4, daughter; 3, 1, son; 3, 4, daughter; 4, 5, son; 5, 4, mother
+
+кузина-4
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, дядя, -1; 5, кузина, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, son; 2, 4, son; 3, 1, son; 3, 4, son; 4, 5, daughter; 5, 4, father
+
+двоюродный брат-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, тётя, -1; 5, двоюродный брат, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, daughter; 2, 4, daughter; 3, 1, daughter; 3, 4, daughter; 4, 5, son; 5, 4, mother
+
+двоюродный брат-2
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, дядя, -1; 5, двоюродный брат, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, daughter; 2, 4, son; 3, 1, daughter; 3, 4, son; 4, 5, son; 5, 4, father
+
+двоюродный брат-3
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, тётя, -1; 5, двоюродный брат, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, son; 2, 4, daughter; 3, 1, son; 3, 4, daughter; 4, 5, son; 5, 4, mother
+
+двоюродный брат-4
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, дядя, -1; 5, двоюродный брат, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, son; 2, 4, son; 3, 1, son; 3, 4, son; 4, 5, son; 5, 4, father
+
+двоюродная сестра-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, тётя, -1; 5, двоюродная сестра, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, daughter; 2, 4, daughter; 3, 1, daughter; 3, 4, daughter; 4, 5, son; 5, 4, mother
+
+двоюродная сестра-2
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, дядя, -1; 5, двоюродная сестра, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, daughter; 2, 4, son; 3, 1, daughter; 3, 4, son; 4, 5, daughter; 5, 4, father
+
+двоюродная сестра-3
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, тётя, -1; 5, двоюродная сестра, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, son; 2, 4, daughter; 3, 1, son; 3, 4, daughter; 4, 5, son; 5, 4, mother
+
+двоюродная сестра-4
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, дядя, -1; 5, двоюродная сестра, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 4, 2, mother; 4, 3, father; 2, 1, son; 2, 4, son; 3, 1, son; 3, 4, son; 4, 5, daughter; 5, 4, father
+
+зять-1
+0, корень, 0; 1, дочь, -1; 2, зять, 0
+0, 1, daughter; 1, 2, husband; 2, 1, wife; 1, 0, mother
+
+зять-2
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, сестра, -1; 4, зять, 0
+0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 3, daughter; 2, 0, daughter; 2, 3, daughter; 3, 1, mother; 3, 2, father; 3, 4, husband; 4, 3, wife
+
+зять-3
+0, корень, 0; 1, муж, -1; 2, свекровь, -1; 3, свёкор, -1; 4, золовка, -1; 5, зять, 0
+0, 1, husband; 1, 0, wife; 1, 2, mother; 1, 3, father; 2, 1, son; 2, 4, daughter; 3, 1, son; 3, 4, daughter; 4, 2, mother; 4, 3, father; 4, 5, husband; 5, 4, wife
+
+зять-4
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, сестра, -1; 4, племянница, -1; 5, зять, 0
+0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 3, daughter; 2, 0, daughter; 2, 3, daughter; 3, 1, mother; 3, 2, father; 3, 4, daughter; 4, 3, mother; 4, 5, husband; 5, 4, wife
+
+зять-5
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, брат, -1; 4, племянница, -1; 5, зять, 0
+0, 1, mother; 0, 2, father; 1, 0, daughter; 1, 3, son; 2, 0, daughter; 2, 3, son; 3, 1, mother; 3, 2, father; 3, 4, daughter; 4, 3, father; 4, 5, husband; 5, 4, wife
+
+правнук-1
+0, корень, 0; 1, дочь, -1; 2, внук, -1, 3, правнук, 0
+0, 1, daughter; 1, 2, son; 2, 3, son; 3, 2, father; 2, 1, mother; 1, 0, mother
+
+правнук-2
+0, корень, 0; 1, сын, -1; 2, внук, -1; 3, правнук, 0
+0, 1, son; 1, 2, son; 2, 3, son; 3, 2, father; 2, 1, father; 1, 0, mother
+
+правнук-3
+0, корень, 0; 1, дочь, -1; 2, внучка, -1; 3, правнук, 0
+0, 1, daughter; 1, 2, daughter; 2, 3, son; 3, 2, mother; 2, 1, mother; 1, 0, mother
+
+правнук-4
+0, корень, 0; 1, сын, -1; 2, внучка, -1; 3, правнук, 0
+0, 1, son; 1, 2, daughter; 2, 3, son; 3, 2, mother; 2, 1, father; 1, 0, mother
+
+правнучка-1
+0, корень, 0; 1, дочь, -1; 2, внук, -1, 3, правнучка, 0
+0, 1, daughter; 1, 2, son; 2, 3, daughter; 3, 2, father; 2, 1, mother; 1, 0, mother
+
+правнучка-2
+0, корень, 0; 1, сын, -1; 2, внук, -1; 3, правнучка, 0
+0, 1, son; 1, 2, son; 2, 3, daughter; 3, 2, father; 2, 1, father; 1, 0, mother
+
+правнучка-3
+0, корень, 0; 1, дочь, -1; 2, внучка, -1; 3, правнучка, 0
+0, 1, daughter; 1, 2, daughter; 2, 3, daughter; 3, 2, mother; 2, 1, mother; 1, 0, mother
+
+правнучка-4
+0, корень, 0; 1, сын, -1; 2, внучка, -1; 3, правнучка, 0
+0, 1, son; 1, 2, daughter; 2, 3, daughter; 3, 2, mother; 2, 1, father; 1, 0, mother
+
+свояк
+0, корень, 0; 1, жена, -1; 2, тёща, -1; 3, тесть, -1; 4, свояченица, -1; 5, свояк, 0
+0, 1, wife; 1, 0, husband; 1, 2, mother; 1, 3, father; 2, 1, daughter; 2, 4, daughter; 3, 1, daughter; 3, 4, daughter; 4, 2, mother; 4, 3, father; 4, 5, husband; 5, 4, wife
+
+двоюродный дядя-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродный дядя, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, daughter; 2, 4, son; 3, 1, daughter; 3, 4, son; 4, 2, mother; 4, 3, father
+
+двоюродный дядя-2
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродный дядя, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, son; 2, 4, son; 3, 1, son; 3, 4, son; 4, 2, mother; 4, 3, father
+
+двоюродная тётя-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродная тётя, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, daughter; 2, 4, daughter; 3, 1, daughter; 3, 4, daughter; 4, 2, mother; 4, 3, father
+
+двоюродная тётя-2
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродная тётя, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, son; 2, 4, daughter; 3, 1, son; 3, 4, daughter; 4, 2, mother; 4, 3, father
+
+двоюродная племянница-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродная тётя, -1; 5, двоюродная племянница, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, daughter; 2, 4, daughter; 3, 1, daughter; 3, 4, daughter; 4, 2, mother; 4, 3, father; 4, 5, daughter; 5, 4, mother
+
+двоюродная племянница-2
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродная тётя, -1; 5, двоюродная племянница, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, son; 2, 4, daughter; 3, 1, son; 3, 4, daughter; 4, 2, mother; 4, 3, father; 4, 5, daughter; 5, 4, mother
+
+двоюродная племянница-3
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродный дядя, -1; 5, двоюродная племянница, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, daughter; 2, 4, son; 3, 1, daughter; 3, 4, son; 4, 2, mother; 4, 3, father; 4, 5, daughter; 5, 4, father
+
+двоюродная племянница-4
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродный дядя, -1; 5, двоюродная племянница, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, son; 2, 4, son; 3, 1, son; 3, 4, son; 4, 2, mother; 4, 3, father; 4, 5, daughter; 5, 4, father
+
+двоюродный племянник-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродная тётя, -1; 5, двоюродный племянник, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, daughter; 2, 4, daughter; 3, 1, daughter; 3, 4, daughter; 4, 2, mother; 4, 3, father; 4, 5, son; 5, 4, mother
+
+двоюродный племянник-2
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродная тётя, -1; 5, двоюродный племянник, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, son; 2, 4, daughter; 3, 1, son; 3, 4, daughter; 4, 2, mother; 4, 3, father; 4, 5, son; 5, 4, mother
+
+двоюродный племянник-3
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродный дядя, -1; 5, двоюродный племянник, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, daughter; 2, 4, son; 3, 1, daughter; 3, 4, son; 4, 2, mother; 4, 3, father; 4, 5, son; 5, 4, father
+
+двоюродный племянник-4
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, дедушка, -1; 4, двоюродный дядя, -1; 5, двоюродный племянник, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 1, 3, father; 2, 1, son; 2, 4, son; 3, 1, son; 3, 4, son; 4, 2, mother; 4, 3, father; 4, 5, son; 5, 4, father
+
+двоюродный дедушка-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, прабабушка, -1; 4, прадедушка, -1; 5, двоюродный дедушка, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 2, 1, daughter; 2, 3, mother; 2, 4, father; 3, 2, daughter; 3, 5, son; 4, 2, daughter; 4, 5, son; 5, 3, mother; 5, 4, father
+
+двоюродный дедушка-2
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, прабабушка, -1; 4, прадедушка, -1; 5, двоюродный дедушка, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 2, 1, son; 2, 3, mother; 2, 4, father; 3, 2, daughter; 3, 5, son; 4, 2, daughter; 4, 5, son; 5, 3, mother; 5, 4, father
+
+двоюродный дедушка-3
+0, корень, 0; 1, мать, -1; 2, дедушка, -1; 3, прабабушка, -1; 4, прадедушка, -1; 5, двоюродный дедушка, 0
+0, 1, mother; 1, 0, daughter; 1, 2, father; 2, 1, daughter; 2, 3, mother; 2, 4, father; 3, 2, son; 3, 5, son; 4, 2, son; 4, 5, son; 4, 5, son; 5, 3, mother; 5, 4, father
+
+двоюродный дедушка-4
+0, корень, 0; 1, отец, -1; 2, дедушка, -1; 3, прабабушка, -1; 4, прадедушка, -1; 5, двоюродный дедушка, 0
+0, 1, father; 1, 0, daughter; 1, 2, father; 2, 1, son; 2, 3, mother; 2, 4, father; 3, 2, daughter; 3, 5, son; 4, 2, daughter; 4, 5, son; 5, 3, mother; 5, 4, father
+
+двоюродная бабушка-1
+0, корень, 0; 1, мать, -1; 2, бабушка, -1; 3, прабабушка, -1; 4, прадедушка, -1; 5, двоюродная бабушка, 0
+0, 1, mother; 1, 0, daughter; 1, 2, mother; 2, 1, daughter; 2, 3, mother; 2, 4, father; 3, 2, daughter; 3, 5, son; 4, 2, daughter; 4, 5, daughter; 5, 3, mother; 5, 4, father
+
+двоюродная бабушка-2
+0, корень, 0; 1, отец, -1; 2, бабушка, -1; 3, прабабушка, -1; 4, прадедушка, -1; 5, двоюродная бабушка, 0
+0, 1, father; 1, 0, daughter; 1, 2, mother; 2, 1, son; 2, 3, mother; 2, 4, father; 3, 2, daughter; 3, 5, son; 4, 2, daughter; 4, 5, daughter; 5, 3, mother; 5, 4, father
+
+двоюродная бабушка-3
+0, корень, 0; 1, мать, -1; 2, дедушка, -1; 3, прабабушка, -1; 4, прадедушка, -1; 5, двоюродная бабушка, 0
+0, 1, mother; 1, 0, daughter; 1, 2, father; 2, 1, daughter; 2, 3, mother; 2, 4, father; 3, 2, son; 3, 5, son; 4, 2, son; 4, 5, son; 4, 5, daughter; 5, 3, mother; 5, 4, father
+
+двоюродная бабушка-4
+0, корень, 0; 1, отец, -1; 2, дедушка, -1; 3, прабабушка, -1; 4, прадедушка, -1; 5, двоюродная бабушка, 0
+0, 1, father; 1, 0, daughter; 1, 2, father; 2, 1, son; 2, 3, mother; 2, 4, father; 3, 2, daughter; 3, 5, son; 4, 2, daughter; 4, 5, daughter; 5, 3, mother; 5, 4, father
+
+внучатый племянник-1
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, сестра, -1; 4, племянница, -1; 5, внучатый племянник, 0
+0, 1, mother; 1, 0, daughter; 1, 3, daughter; 2, 0, daughter; 2, 3, daughter; 3, 1, mother; 3, 2, father; 3, 4, daughter; 4, 3, mother; 4, 5, son; 5, 4, mother
+
+внучатый племянник-2
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, сестра, -1; 4, племянник, -1; 5, внучатый племянник, 0
+0, 1, mother; 1, 0, daughter; 1, 3, daughter; 2, 0, daughter; 2, 3, daughter; 3, 1, mother; 3, 2, father; 3, 4, son; 4, 3, mother; 4, 5, son; 5, 4, father
+
+внучатый племянник-3
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, брат, -1; 4, племянница, -1; 5, внучатый племянник, 0
+0, 1, mother; 1, 0, daughter; 1, 3, son; 2, 0, daughter; 2, 3, son; 3, 1, mother; 3, 2, father; 3, 4, daughter; 4, 3, father; 4, 5, son; 5, 4, mother
+
+внучатый племянник-4
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, брат, -1; 4, племянник, -1; 5, внучатый племянник, 0
+0, 1, mother; 1, 0, daughter; 1, 3, son; 2, 0, daughter; 2, 3, son; 3, 1, mother; 3, 2, father; 3, 4, son; 4, 3, father; 4, 5, son; 5, 4, father
+
+внучатая племянница-1
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, сестра, -1; 4, племянница, -1; 5, внучатая племянница, 0
+0, 1, mother; 1, 0, daughter; 1, 3, daughter; 2, 0, daughter; 2, 3, daughter; 3, 1, mother; 3, 2, father; 3, 4, daughter; 4, 3, mother; 4, 5, daughter; 5, 4, mother
+
+внучатая племянница-2
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, сестра, -1; 4, племянник, -1; 5, внучатая племянница, 0
+0, 1, mother; 1, 0, daughter; 1, 3, daughter; 2, 0, daughter; 2, 3, daughter; 3, 1, mother; 3, 2, father; 3, 4, son; 4, 3, mother; 4, 5, daughter; 5, 4, father
+
+внучатая племянница-3
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, брат, -1; 4, племянница, -1; 5, внучатая племянница, 0
+0, 1, mother; 1, 0, daughter; 1, 3, son; 2, 0, daughter; 2, 3, son; 3, 1, mother; 3, 2, father; 3, 4, daughter; 4, 3, father; 4, 5, daughter; 5, 4, mother
+
+внучатая племянница-4
+0, корень, 0; 1, мать, -1; 2, отец, -1; 3, брат, -1; 4, племянник, -1; 5, внучатая племянница, 0
+0, 1, mother; 1, 0, daughter; 1, 3, son; 2, 0, daughter; 2, 3, son; 3, 1, mother; 3, 2, father; 3, 4, son; 4, 3, father; 4, 5, daughter; 5, 4, father
