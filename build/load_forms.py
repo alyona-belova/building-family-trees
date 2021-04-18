@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 
 def load_forms():
-    with open('kinship_term_list.txt', 'r', encoding='utf-8') as data_file:
+    with open('dicts/kinship_term_list.txt', 'r', encoding='utf-8') as data_file:
         for s in data_file:
             s = s.strip()
             if s == '':
@@ -12,7 +12,7 @@ def load_forms():
             for term in s:
                 kinship_term_dict[term] = s[0]
 
-    with open('pronouns.txt', 'r', encoding='utf-8') as data_file:
+    with open('dicts/pronouns_list.txt', 'r', encoding='utf-8') as data_file:
         lines = data_file.readlines()
         i = 0
         prev_empty = True
@@ -27,12 +27,7 @@ def load_forms():
                 prev_empty = False
                 i += 2
 
-    with open('poss_adj_list.txt', 'r', encoding='utf-8') as data_file:
-        for s in data_file:
-            s = s.strip().split()
-            poss_adj_stem[s[0]] = s[1]
-
-    with open('kinship_term_gender.txt', 'r', encoding='utf-8') as data_file:
+    with open('dicts/kinship_term_gender.txt', 'r', encoding='utf-8') as data_file:
         for s in data_file:
             s = s.strip().split()
             word, gender = s[0], s[1]
@@ -42,8 +37,8 @@ def load_forms():
         kinship_gender['она'] = 'f'
         kinship_gender['он'] = 'm'
 
-    with open('kinship_female_only.txt', 'r', encoding='utf-8') as f_exc, \
-            open('kinship_male_only.txt', 'r', encoding='utf-8') as m_exc:
+    with open('dicts/kinship_female_only.txt', 'r', encoding='utf-8') as f_exc, \
+            open('dicts/kinship_male_only.txt', 'r', encoding='utf-8') as m_exc:
         for s in f_exc:
             kinship_gendered_exceptions['female'].append(s.strip())
         for s in m_exc:
@@ -57,7 +52,6 @@ kinship_gendered_exceptions = {'female': [], 'male': []}  # такие родс�
 
 pronouns_list = []  # местоимения
 pronouns_dict = dict()  # местоимения - соотв. нач. формам
-poss_adj_stem = dict()  # прит. прил. + сущ., от кот. образованы
 
 load_forms()
 

@@ -10,10 +10,24 @@ class WordSequence:
 
         self.seq_original = seq_original  # конструкция в виде, в кот. была найдена
         self.seq_clear = []  # конструкция, очищенная от лишних слов
-        self.seq_normal = []  # конструкция в виде для дальнейшей обработки (нач. формы слов, обр. порядок)
-        self.seq_basic = []  # seq_normal, где термины родства заменены на соотв. базовые (маменька -> мама)
         self.type = -1  # тип конструкции 0 - 5
-        self.correct = None
+        self.clear()
+
+        self.seq_normal = []  # конструкция в виде для дальнейшей обработки (нач. формы слов, обр. порядок)
+        self.normalize()
+        self.seq_basic = []  # seq_normal, где термины родства заменены на соотв. базовые (маменька -> мама)
+        self.get_basic()
+
+        self.correct = None  # корректность конструкции
+        self.check_correct()
+        if not self.correct:
+            raise Exception('Word sequence is incorrect!')
+
+    def __str__(self):
+        return "'" + ' '.join(self.seq_clear) + "'"
+
+    def __repr__(self):
+        return "'" + ' '.join(self.seq_clear) + "'"
 
     def show(self, fout):  # печать в файл
         fout.write(' '.join(self.seq_original) + '\n' +
@@ -26,7 +40,7 @@ class WordSequence:
         # удаляем все опред. - не прит. прил. / местоим. / внуч. / двоюр.
         seq_temp = []
         for word in self.seq_original:
-            if is_definition(word) and not is_vnuch_dvoiur(word) \
+            if not is_kinship_term(word) and is_definition(word) and not is_vnuch_dvoiur(word) \
                     and not is_poss_adj(word) and not is_pronoun(word):
                 continue
             seq_temp.append(word)
@@ -39,7 +53,7 @@ class WordSequence:
         # тип 1
         first_word = seq_temp[0]
         if (is_pronoun(first_word) or is_poss_adj(first_word)) and \
-                check_case_gender(first_word, seq_temp[1]):
+                not is_kinship_term(first_word) and check_case_gender(first_word, seq_temp[1]):
             for i in range(1, len(seq_temp)):
                 if is_kinship_term(seq_temp[i]):
                     self.seq_clear = [first_word, seq_temp[i]]
@@ -50,7 +64,8 @@ class WordSequence:
         # тип 2
         sec_last_word = seq_temp[len(seq_temp) - 2]
         last_word = seq_temp[-1]
-        if (is_pronoun(sec_last_word) or is_poss_adj(sec_last_word)) and is_kinship_term(last_word):
+        if (is_pronoun(sec_last_word) or is_poss_adj(sec_last_word)) \
+                and not is_kinship_term(sec_last_word) and is_kinship_term(last_word):
             for word in seq_temp:
                 if is_kinship_term(word) or is_vnuch_dvoiur(word) or word == sec_last_word:
                     self.seq_clear.append(word)

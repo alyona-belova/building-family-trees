@@ -28,6 +28,8 @@ def is_definition(s):  # определение?
 
 
 def is_noun(s, case=None):  # существительное?
+    if len(s) < 3:
+        return False
     s_parse = morph.parse(s)
     for v in s_parse:
         if v.tag.POS == 'NOUN' and (case is None or v.tag.case == case):
@@ -38,8 +40,9 @@ def is_noun(s, case=None):  # существительное?
 def is_poss_adj(s):  # притяжательное прилагательное?
     p = morph.parse(s)
     for v in p:
-        ending = v.normal_form[len(v.normal_form) - 2:]
-        if ending in ('ов', 'ев', 'ёв', 'ин', 'ын'):
+        if v.tag.POS in ('ADJF', 'ADJS') and 'Poss' in v.tag:
+            # ending = v.normal_form[len(v.normal_form) - 2:]
+            # if ending in ('ов', 'ев', 'ёв', 'ин', 'ын'):
             return True
     return False
 
@@ -61,12 +64,13 @@ def is_vnuch_dvoiur(s):  # форма слова внучатый / двоюро
 
 
 # проверка, что слово согласовано по роду и падежу с предыд. / след.
-def check_case_gender(kinship_term, definition):
-    kinship_parse = morph.parse(kinship_term)
-    def_parse = morph.parse(definition)
-    for p1 in kinship_parse:
-        for p2 in def_parse:
-            if p1.tag.case == p2.tag.case and p1.tag.gender == p2.tag.gender:
+def check_case_gender(first, second):
+    first_parse = morph.parse(first)
+    second_parse = morph.parse(second)
+    for p1 in first_parse:
+        for p2 in second_parse:
+            if p1.tag.case == p2.tag.case and \
+                    (p1.tag.gender == p2.tag.gender or p1.tag.gender is None or p2.tag.gender is None):
                 return True
     return False
 
@@ -138,7 +142,7 @@ def get_normal_form(s: str, is_first: bool, next_word=None):
             s_normal = morph.parse(s)[0].normal_form
 
     if s_normal == '':
-        raise Exception("Can't get normal form: " + s)
+        s_normal = morph.parse(s)[0].normal_form
     return capitalize(s_capitalized, s_normal, is_first)
 
 
@@ -202,8 +206,12 @@ def search_sentence(sent):
         if not prev_kin and not prev_def and is_kinship_term(word):  # найдено первое слово
             start = i
             prev_kin = True
-            if i > 0 and is_definition(sent[i - 1]):  # берем предыд. слово
-                start = i - 1
+            # if i > 0 and is_definition(sent[i - 1]):  # берем предыд. слово
+            #     start = i - 1
+
+            # берем все определения перед ним
+            while start > 0 and is_definition(sent[start - 1]):
+                start -= 1
             i += 1
 
         elif prev_kin or prev_def:  # мы внутри конструкции
