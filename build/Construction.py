@@ -1,6 +1,5 @@
 import copy
 import os
-from pathlib import Path
 
 from TreeVersion import TreeVersion
 from WordSequence import WordSequence
@@ -57,39 +56,7 @@ class Construction:
         new_root_id = template.get_target_word_id()
         self.process_word(tree_id, this_word_ind + 1, new_root_id)
 
-    def create_folder(self):
-        # создаем директорию для данной конструкции
-        folder_path = '/cs_projects/relatives_to_trees/graphs/' + str(self.word_sequence.sent_id)
-        folder_path += '/' + ' '.join(self.word_sequence.seq_clear)
-        Path(folder_path).mkdir(parents=True, exist_ok=True)
-        return folder_path + '/'
-
-    def create_trees(self):
-        first_tree_version = TreeVersion(id=0)
-        self.tree_versions.append(first_tree_version)
-        self.process_word(tree_id=0, this_word_ind=0, root_id=0)
-
-        folder_path = self.create_folder()
-        for tree in self.tree_versions:
-            # удаляем дубликаты родственников
-            while True:
-                id_duplicates = tree.find_duplicates()
-                if id_duplicates:
-                    tree.clear_out_duplicates(id_duplicates)
-                else:
-                    break
-
-            tree.reclaim_id()  # переназначаем id, чтобы они шли по порядку
-            tree.rename_relatives()  # переименовываем родственников, чтобы избежать повторения имен
-
-            tree.pic_name = folder_path + str(tree.id + 1) + '.png'
-            create_graph(tree=tree, seq=self.word_sequence.seq_clear, sentence=self.word_sequence.sentence)
-
-        print(' '.join(self.word_sequence.seq_clear))
-        print('graphs created:', str(len(self.tree_versions)))
-        print()
-
-    def build_trees(self):
+    def build_trees(self):  # строим графы
         first_tree_version = TreeVersion(id=0)
         self.tree_versions.append(first_tree_version)
         self.process_word(tree_id=0, this_word_ind=0, root_id=0)
@@ -105,7 +72,7 @@ class Construction:
             tree.reclaim_id()  # переназначаем id, чтобы они шли по порядку
             tree.rename_relatives()  # переименовываем родственников, чтобы избежать повторения имен
 
-    def draw(self):
+    def draw(self):  # отрисовка
         current_directory = os.getcwd()
         folder_path = os.path.join(current_directory, 'graphs', str(self.word_sequence.sent_id),
                                    ' '.join(self.word_sequence.seq_clear))
