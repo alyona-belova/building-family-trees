@@ -4,7 +4,7 @@
 
 **Russian kinship term possessive sequences** often appear confusing in written text as well as in oral speech since it is difficult to quickly calculate the relations between the characters mentioned. Besides, such phrases often include names of relatives by marriage, which are becoming increasingly obsolescent in modern Russian and thus further complicate human comprehension of the sequences.
 
-We present a computational tool that is capable to extract the sequences in question from a given piece of text, bulid family relations graphs upon them and visualize them as **family trees**.
+We present a computational tool that is capable of extracting the sequences in question from a given piece of text, analyzing and visualizing them as **family trees**.
 
 ## Russian
 
