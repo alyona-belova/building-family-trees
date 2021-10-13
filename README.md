@@ -18,3 +18,7 @@ We present a computational tool that is capable of extracting the sequences in q
 I had known him since my early years. He was *the husband of my sister's grandmother.*
 
 <img src="https://github.com/Magic-near/building-family-trees/blob/master/graph.png" width='800'/>
+
+## Publications
+[ESSLLI Student Session 2021 Online Proceedings](https://www.dropbox.com/s/eggsrltjp4hqtuw/ESSLLI_2021_Online_Proceedings_new.pdf?dl=0) (pp. 84-95)  
+[Материал в Системном Блоке](https://sysblok.ru/knowhow/kak-prevratit-tekst-v-genealogicheskoe-drevo-s-pomoshhju-python/?fbclid=IwAR0gvPTt7-Q-b2xFTBVQiJXBblzyqazHdApzwL9irMCVAXWMicQrRF43j5M)
