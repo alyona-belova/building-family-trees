@@ -20,5 +20,6 @@ I had known him since my early years. He was *the husband of my sister's grandmo
 <img src="https://github.com/Magic-near/building-family-trees/blob/master/graph.png" width='800'/>
 
 ## Publications
+[SEIM 2021 Proceedings](http://ceur-ws.org/Vol-2953/SEIM_2021_paper_11.pdf)
 [ESSLLI Student Session 2021 Online Proceedings](https://www.dropbox.com/s/eggsrltjp4hqtuw/ESSLLI_2021_Online_Proceedings_new.pdf?dl=0) (pp. 84-95)  
 [Материал в Системном Блоке](https://sysblok.ru/knowhow/kak-prevratit-tekst-v-genealogicheskoe-drevo-s-pomoshhju-python/?fbclid=IwAR0gvPTt7-Q-b2xFTBVQiJXBblzyqazHdApzwL9irMCVAXWMicQrRF43j5M)
